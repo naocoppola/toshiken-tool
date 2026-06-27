@@ -125,12 +125,6 @@
 '<div class="use">用途：'+current.use+'</div>';
 
 document.getElementById('speakBtn').onclick = () => speakJapanese(current.name);
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(current.name);
-  u.lang = 'ja-JP';
-  u.rate = 0.9;
-  speechSynthesis.speak(u);
-});
     }
     function speakJapanese(text){
   if(!('speechSynthesis' in window)) return;
@@ -143,7 +137,7 @@ document.getElementById('speakBtn').onclick = () => speakJapanese(current.name);
 
   speechSynthesis.speak(u);
 }
-  　function renderBook(){
+   function renderBook(){
       $('toolList').innerHTML=tools.map(t=>'<article class="item"><div class="thumb"><img src="'+imgPath(t)+'" alt="'+t.name+'"></div><div><div class="name">'+t.name+'</div><div class="idn">'+t.indonesia+'</div><div class="sub">用途：'+t.use+'</div></div></article>').join('');
     }
     function show(which){
