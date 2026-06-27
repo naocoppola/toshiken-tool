@@ -3,8 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#111827" />
-  <link rel="manifest" href="manifest.webmanifest" />
   <title>TOSHIKEN QUEST</title>
   <style>
     :root{--bg:#f7f7f5;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--accent:#0f766e;--good:#047857;--bad:#b91c1c;}
@@ -29,8 +27,8 @@
     .choice.wrong{border-color:#f0b4b4;background:#fff1f1}
     .result{margin-top:12px;border-radius:18px;padding:13px 14px;background:#f9fafb;border:1px solid var(--line)}
     .result strong{display:block;font-size:18px}
-    .result .ok{color:var(--good)}
-    .result .ng{color:var(--bad)}
+    .ok{color:var(--good)}
+    .ng{color:var(--bad)}
     .use{margin-top:8px}
     .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
     .btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px 14px;font-size:16px}
@@ -67,7 +65,6 @@
       <div class="result hidden" id="result"></div>
       <div class="actions">
         <button class="btn primary" type="button" id="nextBtn">次へ</button>
-        <button class="btn" type="button" id="againBtn">もう一度</button>
       </div>
     </section>
 
@@ -77,83 +74,129 @@
   </main>
 
   <script>
-    let tools=[]; let current=null; let answered=false;
-    const imgDir='';
-    const $=id=>document.getElementById(id);
-    function shuffle(a){return [...a].sort(()=>Math.random()-0.5)}
-    function imgPath(t){return imgDir + t.image}
+    let tools = [];
+    let current = null;
+    let answered = false;
+
+    const imgDir = '';
+    const $ = id => document.getElementById(id);
+
+    function shuffle(array){
+      return [...array].sort(() => Math.random() - 0.5);
+    }
+
+    function imgPath(tool){
+      return imgDir + tool.image;
+    }
+
+    function speakJapanese(text){
+      if(!('speechSynthesis' in window)){
+        alert('このブラウザでは音声が使えません');
+        return;
+      }
+
+      speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'ja-JP';
+      utterance.rate = 0.9;
+      utterance.pitch = 1.0;
+
+      speechSynthesis.speak(utterance);
+    }
+
     async function init(){
-      const res=await fetch('tools.json');
-      tools=await res.json();
-      $('countPill').textContent=tools.length+'工具';
+      const res = await fetch('tools.json');
+      tools = await res.json();
+
+      $('countPill').textContent = tools.length + '工具';
+
       renderBook();
       nextQuestion();
     }
+
     function nextQuestion(){
-      answered=false;
+      answered = false;
+
       $('result').classList.add('hidden');
-      $('result').innerHTML='';
-      current=tools[Math.floor(Math.random()*tools.length)];
-      $('toolImg').src=imgPath(current);
-      $('toolImg').alt=current.name+'の写真';
-      const wrong=shuffle(tools.filter(t=>t.id!==current.id)).slice(0,3);
-      const opts=shuffle([current,...wrong]);
-      $('choices').innerHTML='';
-      opts.forEach(t=>{
-        const b=document.createElement('button');
-        b.type='button';
-        b.className='choice';
-        b.innerHTML='<span>'+t.name+'</span><small>'+t.indonesia+'</small>';
-        b.addEventListener('click',()=>answer(t,b));
-        $('choices').appendChild(b);
+      $('result').innerHTML = '';
+
+      current = tools[Math.floor(Math.random() * tools.length)];
+
+      $('toolImg').src = imgPath(current);
+      $('toolImg').alt = current.name + 'の写真';
+
+      const wrong = shuffle(tools.filter(t => t.id !== current.id)).slice(0, 3);
+      const options = shuffle([current, ...wrong]);
+
+      $('choices').innerHTML = '';
+
+      options.forEach(tool => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'choice';
+        button.innerHTML = '<span>' + tool.name + '</span><small>' + tool.indonesia + '</small>';
+        button.addEventListener('click', () => answer(tool, button));
+        $('choices').appendChild(button);
       });
     }
-    function answer(t,btn){
+
+    function answer(selectedTool, button){
       if(answered) return;
-      answered=true;
-      const ok=t.id===current.id;
-      [...$('choices').children].forEach(b=>{
-        const jp=b.querySelector('span').textContent;
-        if(jp===current.name) b.classList.add('correct');
+      answered = true;
+
+      const ok = selectedTool.id === current.id;
+
+      [...$('choices').children].forEach(choice => {
+        const jp = choice.querySelector('span').textContent;
+        if(jp === current.name) choice.classList.add('correct');
       });
-      if(!ok) btn.classList.add('wrong');
+
+      if(!ok) button.classList.add('wrong');
+
       $('result').classList.remove('hidden');
-      $('result').innerHTML='<strong class="'+(ok?'ok':'ng')+'">'+(ok?'正解':'ちがいます')+'</strong>'+ 
-       '<div class="name">'+current.name+'</div>'+
-'<button class="btn" type="button" id="speakBtn">🔊 日本語を聞く</button>'+
-'<div class="idn">'+current.indonesia+'</div>'+
-'<div class="use">用途：'+current.use+'</div>';
+      $('result').innerHTML =
+        '<strong class="' + (ok ? 'ok' : 'ng') + '">' + (ok ? '正解' : 'ちがいます') + '</strong>' +
+        '<div class="name">' + current.name + '</div>' +
+        '<button class="btn" type="button" id="speakBtn">🔊 日本語を聞く</button>' +
+        '<div class="idn">' + current.indonesia + '</div>' +
+        '<div class="use">用途：' + current.use + '</div>';
 
-document.getElementById('speakBtn').onclick = () => speakJapanese(current.name);
+      $('speakBtn').addEventListener('click', () => {
+        speakJapanese(current.name);
+      });
     }
-    function speakJapanese(text){
-  if(!('speechSynthesis' in window)) return;
 
-  speechSynthesis.cancel();
-
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'ja-JP';
-  u.rate = 0.9;
-
-  speechSynthesis.speak(u);
-}
-   function renderBook(){
-      $('toolList').innerHTML=tools.map(t=>'<article class="item"><div class="thumb"><img src="'+imgPath(t)+'" alt="'+t.name+'"></div><div><div class="name">'+t.name+'</div><div class="idn">'+t.indonesia+'</div><div class="sub">用途：'+t.use+'</div></div></article>').join('');
+    function renderBook(){
+      $('toolList').innerHTML = tools.map(tool =>
+        '<article class="item">' +
+          '<div class="thumb"><img src="' + imgPath(tool) + '" alt="' + tool.name + '"></div>' +
+          '<div>' +
+            '<div class="name">' + tool.name + '</div>' +
+            '<div class="idn">' + tool.indonesia + '</div>' +
+            '<div class="sub">用途：' + tool.use + '</div>' +
+          '</div>' +
+        '</article>'
+      ).join('');
     }
+
     function show(which){
-      const quiz=which==='quiz';
-      $('quiz').classList.toggle('hidden',!quiz);
-      $('book').classList.toggle('hidden',quiz);
-      $('quizTab').classList.toggle('active',quiz);
-      $('bookTab').classList.toggle('active',!quiz);
+      const quiz = which === 'quiz';
+
+      $('quiz').classList.toggle('hidden', !quiz);
+      $('book').classList.toggle('hidden', quiz);
+      $('quizTab').classList.toggle('active', quiz);
+      $('bookTab').classList.toggle('active', !quiz);
     }
-    $('nextBtn').addEventListener('click',nextQuestion);
-    $('againBtn').addEventListener('click',nextQuestion);
-    $('quizTab').addEventListener('click',()=>show('quiz'));
-    $('bookTab').addEventListener('click',()=>show('book'));
-    init().catch(e=>{
-      document.body.innerHTML='<main class="wrap"><div class="card">読み込みに失敗しました。tools.json と images フォルダを確認してください。</div></main>';
-      console.error(e);
+
+    $('nextBtn').addEventListener('click', nextQuestion);
+    $('quizTab').addEventListener('click', () => show('quiz'));
+    $('bookTab').addEventListener('click', () => show('book'));
+
+    init().catch(error => {
+      document.body.innerHTML =
+        '<main class="wrap"><div class="card">読み込みに失敗しました。tools.json と画像ファイルを確認してください。</div></main>';
+      console.error(error);
     });
   </script>
 </body>
