@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TOSHIKEN TOOLS</title>
+  <title>Toshiken Tools</title>
   <style>
     :root{--bg:#f7f7f5;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--accent:#0f766e;--good:#047857;--bad:#b91c1c;}
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
     .wrap{max-width:820px;margin:0 auto;padding:18px 14px 28px}
     .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
-    .title{font-size:22px;font-weight:800;letter-spacing:.02em}
+    .title{font-size:24px;font-weight:800;letter-spacing:.02em}
     .sub{color:var(--muted);font-size:14px}
     .pill{background:#e7f5f3;color:#075f58;border:1px solid #bde5df;border-radius:999px;padding:6px 10px;font-size:13px;white-space:nowrap}
     .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
@@ -29,28 +29,31 @@
     .result strong{display:block;font-size:18px}
     .ok{color:var(--good)}
     .ng{color:var(--bad)}
+    .name{font-weight:750;font-size:18px}
+    .reading{color:var(--muted);font-size:16px;margin-top:2px}
+    .idn{color:var(--accent);font-weight:650;margin-top:6px}
     .use{margin-top:8px}
     .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
     .btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px 14px;font-size:16px}
     .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .speakBtn{margin-top:10px}
     .list{display:grid;gap:10px}
     .item{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px}
     .thumb{height:72px;border-radius:14px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
     .thumb img{max-width:100%;max-height:70px;object-fit:contain}
-    .name{font-weight:750}
-    .idn{color:var(--accent);font-weight:650}
     .hidden{display:none}
-    @media (min-width:680px){.choices{grid-template-columns:1fr 1fr}.card{padding:20px}.photoBox{min-height:340px}.title{font-size:26px}}
+    @media (min-width:680px){.choices{grid-template-columns:1fr 1fr}.card{padding:20px}.photoBox{min-height:340px}.title{font-size:28px}}
   </style>
 </head>
+
 <body>
   <main class="wrap">
     <div class="top">
       <div>
-        <div class="title">TOSHIKEN QUEST</div>
-        <div class="sub">工具名を覚えるための教材</div>
+        <div class="title">Toshiken Tools</div>
+        <div class="sub">工具名をおぼえる教材</div>
       </div>
-      <div class="pill" id="countPill">30工具</div>
+      <div class="pill" id="countPill">工具</div>
     </div>
 
     <div class="tabs">
@@ -59,7 +62,9 @@
     </div>
 
     <section id="quiz" class="card">
-      <div class="photoBox"><img id="toolImg" alt="工具写真"></div>
+      <div class="photoBox">
+        <img id="toolImg" alt="工具写真">
+      </div>
       <div class="q">この工具の名前は？</div>
       <div class="choices" id="choices"></div>
       <div class="result hidden" id="result"></div>
@@ -89,7 +94,25 @@
       return imgDir + tool.image;
     }
 
-    function speakJapanese(text){
+    function escapeHtml(text){
+      return String(text || '').replace(/[&<>"']/g, s => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[s]));
+    }
+
+    function readingLine(tool){
+      return tool.reading ? '<div class="reading">' + escapeHtml(tool.reading) + '</div>' : '';
+    }
+
+    function speakText(tool){
+      return tool.speak || tool.reading || tool.name;
+    }
+
+    function speakJapanese(tool){
       if(!('speechSynthesis' in window)){
         alert('このブラウザでは音声が使えません');
         return;
@@ -97,9 +120,9 @@
 
       speechSynthesis.cancel();
 
-      const utterance = new SpeechSynthesisUtterance(text);
+      const utterance = new SpeechSynthesisUtterance(speakText(tool));
       utterance.lang = 'ja-JP';
-      utterance.rate = 0.9;
+      utterance.rate = 0.85;
       utterance.pitch = 1.0;
 
       speechSynthesis.speak(utterance);
@@ -135,7 +158,9 @@
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'choice';
-        button.innerHTML = '<span>' + tool.name + '</span><small>' + tool.indonesia + '</small>';
+        button.innerHTML =
+          '<span>' + escapeHtml(tool.name) + '</span>' +
+          '<small>' + escapeHtml(tool.indonesia) + '</small>';
         button.addEventListener('click', () => answer(tool, button));
         $('choices').appendChild(button);
       });
@@ -157,27 +182,35 @@
       $('result').classList.remove('hidden');
       $('result').innerHTML =
         '<strong class="' + (ok ? 'ok' : 'ng') + '">' + (ok ? '正解' : 'ちがいます') + '</strong>' +
-        '<div class="name">' + current.name + '</div>' +
-        '<button class="btn" type="button" id="speakBtn">🔊 日本語を聞く</button>' +
-        '<div class="idn">' + current.indonesia + '</div>' +
-        '<div class="use">用途：' + current.use + '</div>';
+        '<div class="name">' + escapeHtml(current.name) + '</div>' +
+        readingLine(current) +
+        '<button class="btn speakBtn" type="button" id="speakBtn">🔊 日本語を聞く</button>' +
+        '<div class="idn">' + escapeHtml(current.indonesia) + '</div>' +
+        '<div class="use">つかいかた：' + escapeHtml(current.use) + '</div>';
 
-      $('speakBtn').addEventListener('click', () => {
-        speakJapanese(current.name);
-      });
+      $('speakBtn').addEventListener('click', () => speakJapanese(current));
     }
 
     function renderBook(){
       $('toolList').innerHTML = tools.map(tool =>
         '<article class="item">' +
-          '<div class="thumb"><img src="' + imgPath(tool) + '" alt="' + tool.name + '"></div>' +
+          '<div class="thumb"><img src="' + imgPath(tool) + '" alt="' + escapeHtml(tool.name) + '"></div>' +
           '<div>' +
-            '<div class="name">' + tool.name + '</div>' +
-            '<div class="idn">' + tool.indonesia + '</div>' +
-            '<div class="sub">用途：' + tool.use + '</div>' +
+            '<div class="name">' + escapeHtml(tool.name) + '</div>' +
+            readingLine(tool) +
+            '<button class="btn speakBtn" type="button" data-id="' + escapeHtml(tool.id) + '">🔊 日本語</button>' +
+            '<div class="idn">' + escapeHtml(tool.indonesia) + '</div>' +
+            '<div class="sub">つかいかた：' + escapeHtml(tool.use) + '</div>' +
           '</div>' +
         '</article>'
       ).join('');
+
+      document.querySelectorAll('[data-id]').forEach(button => {
+        button.addEventListener('click', () => {
+          const tool = tools.find(t => String(t.id) === String(button.dataset.id));
+          if(tool) speakJapanese(tool);
+        });
+      });
     }
 
     function show(which){
