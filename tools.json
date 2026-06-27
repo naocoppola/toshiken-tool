@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "name": "スパナ",
+    "en": "Open-End Wrench",
+    "indonesia": "Kunci Pas",
+    "use": "ボルトやナットを締めたり緩めたりする",
+    "image": "001.png"
+  },
+  {
+    "id": 2,
+    "name": "コンビネーションレンチ",
+    "en": "Combination Wrench",
+    "indonesia": "Kunci Kombinasi",
+    "use": "スパナとメガネレンチの両機能を持つ万能レンチ",
+    "image": "002.png"
+  },
+  {
+    "id": 3,
+    "name": "メガネレンチ",
+    "en": "Box-End Wrench",
+    "indonesia": "Kunci Ring",
+    "use": "ボルト全体を囲んで安全に回す",
+    "image": "003.png"
+  },
+  {
+    "id": 4,
+    "name": "ラチェットハンドル",
+    "en": "Ratchet Handle",
+    "indonesia": "Pegangan Ratchet",
+    "use": "ソケットと組み合わせて連続して回す",
+    "image": "004.png"
+  },
+  {
+    "id": 5,
+    "name": "ソケット",
+    "en": "Socket",
+    "indonesia": "Soket",
+    "use": "ラチェットに付けてボルトを回す",
+    "image": "005.png"
+  },
+  {
+    "id": 6,
+    "name": "インパクトソケット",
+    "en": "Impact Socket",
+    "indonesia": "Soket Impact",
+    "use": "インパクトレンチ専用の黒いソケット",
+    "image": "006.png"
+  },
+  {
+    "id": 7,
+    "name": "トルクレンチ",
+    "en": "Torque Wrench",
+    "indonesia": "Kunci Torsi",
+    "use": "規定の力でボルトを締める",
+    "image": "007.png"
+  },
+  {
+    "id": 8,
+    "name": "六角レンチ",
+    "en": "Hex Key",
+    "indonesia": "Kunci Hex",
+    "use": "六角穴付きボルトを回す",
+    "image": "008.png"
+  },
+  {
+    "id": 9,
+    "name": "プラスドライバー",
+    "en": "Phillips Screwdriver",
+    "indonesia": "Obeng Plus",
+    "use": "十字ネジを締め緩めする",
+    "image": "009.png"
+  },
+  {
+    "id": 10,
+    "name": "マイナスドライバー",
+    "en": "Flat-Head Screwdriver",
+    "indonesia": "Obeng Min",
+    "use": "マイナスネジを締め緩めする",
+    "image": "010.png"
+  },
+  {
+    "id": 11,
+    "name": "エアインパクトレンチ",
+    "en": "Air Impact Wrench",
+    "indonesia": "Impact Wrench Angin",
+    "use": "エアで強い力を出してボルトを回す",
+    "image": "011.png"
+  },
+  {
+    "id": 12,
+    "name": "電動インパクトレンチ",
+    "en": "Electric Impact Wrench",
+    "indonesia": "Impact Wrench Listrik",
+    "use": "バッテリーで動くインパクトレンチ",
+    "image": "012.png"
+  },
+  {
+    "id": 13,
+    "name": "ボールピンハンマー",
+    "en": "Ball-Peen Hammer",
+    "indonesia": "Palu Bulat",
+    "use": "ポンチを叩く・ピンを打ち込む",
+    "image": "013.png"
+  },
+  {
+    "id": 14,
+    "name": "銅ハンマー",
+    "en": "Copper Hammer",
+    "indonesia": "Palu Tembaga",
+    "use": "精密部品を傷つけずに叩く",
+    "image": "014.png"
+  },
+  {
+    "id": 15,
+    "name": "プラスチックハンマー",
+    "en": "Plastic Mallet",
+    "indonesia": "Palu Plastik",
+    "use": "部品表面を傷つけずに軽く叩く",
+    "image": "015.png"
+  },
+  {
+    "id": 16,
+    "name": "ペンチ",
+    "en": "Combination Pliers",
+    "indonesia": "Tang Kombinasi",
+    "use": "掴む・挟む・曲げる・切る",
+    "image": "016.png"
+  },
+  {
+    "id": 17,
+    "name": "ラジオペンチ",
+    "en": "Needle-Nose Pliers",
+    "indonesia": "Tang Lancip",
+    "use": "狭い場所の部品を掴む",
+    "image": "017.png"
+  },
+  {
+    "id": 18,
+    "name": "ロッキングプライヤー",
+    "en": "Locking Pliers",
+    "indonesia": "Tang Kunci",
+    "use": "ロックして部品を固定できるプライヤー",
+    "image": "018.png"
+  },
+  {
+    "id": 19,
+    "name": "スナップリングプライヤー",
+    "en": "Snap Ring Pliers",
+    "indonesia": "Tang Snap Ring",
+    "use": "スナップリングを着脱する専用工具",
+    "image": "019.png"
+  },
+  {
+    "id": 20,
+    "name": "ポンチ",
+    "en": "Punch",
+    "indonesia": "Punch",
+    "use": "ピンを打ち抜く・穴位置をマークする",
+    "image": "020.png"
+  },
+  {
+    "id": 21,
+    "name": "タガネ",
+    "en": "Chisel",
+    "indonesia": "Pahat",
+    "use": "金属を切断・固着部品を分離する",
+    "image": "021.png"
+  },
+  {
+    "id": 22,
+    "name": "ディスクグラインダー",
+    "en": "Angle Grinder",
+    "indonesia": "Gerinda Tangan",
+    "use": "金属を研削・切断・さび落とし",
+    "image": "022.png"
+  },
+  {
+    "id": 23,
+    "name": "ワイヤーブラシ",
+    "en": "Wire Brush",
+    "indonesia": "Sikat Kawat",
+    "use": "さび・塗料・汚れを落とす",
+    "image": "023.png"
+  },
+  {
+    "id": 24,
+    "name": "ノギス",
+    "en": "Vernier Caliper",
+    "indonesia": "Jangka Sorong",
+    "use": "寸法を0.05mm単位で精密に測る",
+    "image": "024.png"
+  },
+  {
+    "id": 25,
+    "name": "シックネスゲージ",
+    "en": "Feeler Gauge",
+    "indonesia": "Feeler Gauge",
+    "use": "すき間の大きさを測る",
+    "image": "025.png"
+  },
+  {
+    "id": 26,
+    "name": "シールピック",
+    "en": "Seal Pick",
+    "indonesia": "Alat Pengangkat Seal",
+    "use": "Oリング・シールを傷つけずに取り出す",
+    "image": "026.png"
+  },
+  {
+    "id": 27,
+    "name": "チェーンブロック",
+    "en": "Chain Block",
+    "indonesia": "Chain Block",
+    "use": "重い物をチェーンで吊り上げる",
+    "image": "027.png"
+  },
+  {
+    "id": 28,
+    "name": "スリング",
+    "en": "Web Sling",
+    "indonesia": "Tali Sling",
+    "use": "重い物をベルトで吊るす",
+    "image": "028.png"
+  },
+  {
+    "id": 29,
+    "name": "シャックル",
+    "en": "Shackle",
+    "indonesia": "Shackle",
+    "use": "スリングとフックを接続する金具",
+    "image": "029.png"
+  },
+  {
+    "id": 30,
+    "name": "エアガン",
+    "en": "Air Blow Gun",
+    "indonesia": "Pistol Angin",
+    "use": "エアを噴射して切粉・水分を吹き飛ばす",
+    "image": "030.png"
+  }
+]
