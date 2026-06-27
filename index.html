@@ -119,9 +119,31 @@
       if(!ok) btn.classList.add('wrong');
       $('result').classList.remove('hidden');
       $('result').innerHTML='<strong class="'+(ok?'ok':'ng')+'">'+(ok?'正解':'ちがいます')+'</strong>'+ 
-        '<div class="name">'+current.name+'</div><div class="idn">'+current.indonesia+'</div><div class="use">用途：'+current.use+'</div>';
+       '<div class="name">'+current.name+'</div>'+
+'<button class="btn" type="button" id="speakBtn">🔊 日本語を聞く</button>'+
+'<div class="idn">'+current.indonesia+'</div>'+
+'<div class="use">用途：'+current.use+'</div>';
+
+document.getElementById('speakBtn').onclick = () => speakJapanese(current.name);
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(current.name);
+  u.lang = 'ja-JP';
+  u.rate = 0.9;
+  speechSynthesis.speak(u);
+});
     }
-    function renderBook(){
+    function speakJapanese(text){
+  if(!('speechSynthesis' in window)) return;
+
+  speechSynthesis.cancel();
+
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'ja-JP';
+  u.rate = 0.9;
+
+  speechSynthesis.speak(u);
+}
+  　function renderBook(){
       $('toolList').innerHTML=tools.map(t=>'<article class="item"><div class="thumb"><img src="'+imgPath(t)+'" alt="'+t.name+'"></div><div><div class="name">'+t.name+'</div><div class="idn">'+t.indonesia+'</div><div class="sub">用途：'+t.use+'</div></div></article>').join('');
     }
     function show(which){
