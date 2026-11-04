@@ -23,74 +23,355 @@
     .check{display:flex;align-items:center;gap:7px;white-space:nowrap}.check input{width:17px;height:17px;accent-color:var(--green)}
     .progress{height:7px;background:#dfe8e3;border-radius:99px;overflow:hidden;margin:0 2px 14px}.progress span{height:100%;display:block;background:var(--green);border-radius:inherit;transition:width .2s}
     .card{background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:var(--shadow)}
-    .cardhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.category{font-size:12px;font-weight:750;letter-spacing:.02em;color:var(--green);background:var(--mint);border-radius:999px;padding:5px 10px}.number{font-size:13px;color:var(--muted)}
+    .cardhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .category{font-size:12px;font-weight:750;letter-spacing:.02em;color:var(--green);background:var(--mint);border-radius:999px;padding:5px 10px}
+    .number{font-size:13px;color:var(--muted)}
     .visual{height:235px;background:#fbfcfb;border:1px solid var(--line);border-radius:20px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:14px;position:relative}
-    .visual img{max-width:100%;max-height:100%;object-fit:contain}.placeholder{display:none;text-align:center;color:#8c9a94}.placeholder .symbol{font-size:54px;line-height:1}.placeholder small{display:block;margin-top:8px;font-size:12px}
-    .jpname{font-size:27px;font-weight:850;text-align:center;margin:14px 0 0}.reading{text-align:center;color:var(--muted);font-size:15px}.nickname{text-align:center;color:var(--green);font-weight:750;margin-top:3px}
-    .explain{margin-top:16px;background:#f7faf8;border:1px solid var(--line);border-radius:17px;padding:15px}.label{color:var(--muted);font-size:12px;font-weight:750;letter-spacing:.04em}.idname{font-size:20px;font-weight:850;color:var(--green-dark);margin-top:3px}.idexplain{font-size:17px;margin-top:5px}
-    .actions{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:8px;margin-top:13px}.btn{border:1px solid var(--line);background:white;border-radius:13px;padding:11px 9px;color:var(--ink);font-weight:700}.btn.primary{background:var(--green);border-color:var(--green);color:white}.btn.mastered{background:#fff8e4;border-color:#f0d78e;color:#684b00}.btn:disabled{opacity:.42;cursor:default}
-    .secondary{display:flex;justify-content:center;gap:8px;margin-top:9px;flex-wrap:wrap}.secondary .btn{font-size:14px;padding:9px 13px}.voiceRow{display:flex;align-items:center;gap:8px;max-width:480px;margin:10px auto 0;color:var(--muted);font-size:13px}.voiceRow select{padding:8px 10px;font-size:13px}.voiceRow.hidden{display:none}
-    .empty{background:white;border:1px dashed var(--line);border-radius:18px;padding:30px;text-align:center;color:var(--muted)}.hidden{display:none!important}
-    @media(max-width:540px){.wrap{padding:14px 12px 28px}.brand{font-size:22px}.intro{padding:15px 16px}.filters{grid-template-columns:1fr}.visual{height:205px}.card{padding:14px;border-radius:22px}.jpname{font-size:24px}.actions{grid-template-columns:.9fr 1.2fr .9fr}.btn{font-size:14px;padding:11px 5px}.voiceRow{align-items:flex-start;flex-direction:column}.voiceRow select{width:100%}}
+    .visual img{max-width:100%;max-height:100%;object-fit:contain}
+    .placeholder{display:none;text-align:center;color:#8c9a94}.placeholder .symbol{font-size:54px;line-height:1}.placeholder small{display:block;margin-top:8px;font-size:12px}
+    .jpname{font-size:27px;font-weight:850;text-align:center;margin:14px 0 0}.reading{text-align:center;color:var(--muted);font-size:15px}
+    .nickname{text-align:center;color:var(--green);font-weight:750;margin-top:3px}
+    .explain{margin-top:16px;background:#f7faf8;border:1px solid var(--line);border-radius:17px;padding:15px}
+    .label{color:var(--muted);font-size:12px;font-weight:750;letter-spacing:.04em}
+    .idname{font-size:20px;font-weight:850;color:var(--green-dark);margin-top:3px}.idexplain{font-size:17px;margin-top:5px}
+    .actions{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:8px;margin-top:13px}
+    .btn{border:1px solid var(--line);background:white;border-radius:13px;padding:11px 9px;color:var(--ink);font-weight:700}
+    .btn.primary{background:var(--green);border-color:var(--green);color:white}
+    .btn.mastered{background:#fff8e4;border-color:#f0d78e;color:#684b00}.btn:disabled{opacity:.42;cursor:default}
+    .secondary{display:flex;justify-content:center;gap:8px;margin-top:9px;flex-wrap:wrap}
+    .secondary .btn{font-size:14px;padding:9px 13px}
+    .voiceRow{display:flex;align-items:center;gap:8px;max-width:480px;margin:10px auto 0;color:var(--muted);font-size:13px}
+    .voiceRow select{padding:8px 10px;font-size:13px}.voiceRow.hidden{display:none}
+    .empty{background:white;border:1px dashed var(--line);border-radius:18px;padding:30px;text-align:center;color:var(--muted)}
+    .hidden{display:none!important}
+    @media(max-width:540px){
+      .wrap{padding:14px 12px 28px}.brand{font-size:22px}.intro{padding:15px 16px}
+      .filters{grid-template-columns:1fr}.visual{height:205px}.card{padding:14px;border-radius:22px}
+      .jpname{font-size:24px}.actions{grid-template-columns:.9fr 1.2fr .9fr}
+      .btn{font-size:14px;padding:11px 5px}.voiceRow{align-items:flex-start;flex-direction:column}
+      .voiceRow select{width:100%}
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
     <header class="top">
-      <div><div class="brand">Toshiken Tools</div><div class="subtitle">Hafalkan nama alat sebelum datang ke Jepang</div></div>
+      <div>
+        <div class="brand">Toshiken Tools</div>
+        <div class="subtitle">Hafalkan nama alat sebelum datang ke Jepang</div>
+      </div>
       <div class="badge" id="totalBadge">70 alat</div>
     </header>
-    <section class="intro"><strong>Kartu kosakata alat</strong><p>Lihat nama alat dalam bahasa Jepang. Pikirkan jawabannya, lalu tekan “Lihat jawaban” untuk membaca penjelasan dalam bahasa Indonesia.</p></section>
+
+    <section class="intro">
+      <strong>Kartu kosakata alat</strong>
+      <p>Lihat nama alat dalam bahasa Jepang. Pikirkan jawabannya, lalu tekan “Lihat jawaban” untuk membaca penjelasan dalam bahasa Indonesia.</p>
+    </section>
+
     <div class="filters">
       <input id="search" type="search" placeholder="Cari nama alat atau kata Indonesia" aria-label="Cari alat" />
-      <select id="category" aria-label="Pilih kategori"><option value="">Semua kategori</option></select>
+      <select id="category" aria-label="Pilih kategori">
+        <option value="">Semua kategori</option>
+      </select>
     </div>
-    <div class="filterline"><span id="deckCount">Memuat kartu…</span><label class="check"><input id="unlearnedOnly" type="checkbox" />Belum hafal</label></div>
-    <div class="progress" aria-label="Kemajuan belajar"><span id="progressBar" style="width:0%"></span></div>
+
+    <div class="filterline">
+      <span id="deckCount">Memuat kartu…</span>
+      <label class="check"><input id="unlearnedOnly" type="checkbox" />Belum hafal</label>
+    </div>
+
+    <div class="progress" aria-label="Kemajuan belajar">
+      <span id="progressBar" style="width:0%"></span>
+    </div>
+
     <section id="flashcard" class="card hidden" aria-live="polite">
-      <div class="cardhead"><span class="category" id="cardCategory"></span><span class="number" id="cardNumber"></span></div>
+      <div class="cardhead">
+        <span class="category" id="cardCategory"></span>
+        <span class="number" id="cardNumber"></span>
+      </div>
+
       <div class="visual" id="visual">
         <img id="toolImage" alt="" />
-        <div class="placeholder" id="placeholder"><div class="symbol">🔧</div><small>Hafalkan namanya</small></div>
+        <div class="placeholder" id="placeholder">
+          <div class="symbol">🔧</div>
+          <small>Hafalkan namanya</small>
+        </div>
       </div>
-      <div class="jpname" id="jpName"></div><div class="reading" id="reading"></div><div class="nickname hidden" id="nickname"></div>
+
+      <div class="jpname" id="jpName"></div>
+      <div class="reading" id="reading"></div>
+      <div class="nickname hidden" id="nickname"></div>
+
       <div class="explain hidden" id="answer">
         <div class="label">BAHASA INDONESIA</div>
-        <div class="idname" id="idName"></div><div class="idexplain" id="idExplain"></div>
+        <div class="idname" id="idName"></div>
+        <div class="idexplain" id="idExplain"></div>
       </div>
+
       <div class="actions">
         <button class="btn" id="prev" type="button">← Sebelumnya</button>
         <button class="btn primary" id="reveal" type="button">Lihat jawaban</button>
         <button class="btn" id="next" type="button">Berikutnya →</button>
       </div>
-      <div class="secondary"><button class="btn" id="speak" type="button">🔊 Dengarkan pelafalan Jepang</button><button class="btn mastered" id="mark" type="button">✓ Saya hafal</button></div>
-      <label class="voiceRow hidden" id="voiceRow"><span>Pilih suara bahasa Jepang:</span><select id="voiceSelect" aria-label="Pilih suara bahasa Jepang"></select></label>
+
+      <div class="secondary">
+        <button class="btn" id="speak" type="button">🔊 Dengarkan pelafalan Jepang</button>
+        <button class="btn mastered" id="mark" type="button">✓ Saya hafal</button>
+      </div>
+
+      <label class="voiceRow hidden" id="voiceRow">
+        <span>Pilih suara bahasa Jepang:</span>
+        <select id="voiceSelect" aria-label="Pilih suara bahasa Jepang"></select>
+      </label>
     </section>
+
     <section id="empty" class="empty hidden">Tidak ada kartu yang cocok. Ubah kata pencarian atau kategori.</section>
   </main>
+
   <script>
     const $ = id => document.getElementById(id);
     let tools = [], deck = [], position = 0, japaneseVoices = [];
     let learned = new Set();
-    try { learned = new Set(JSON.parse(localStorage.getItem('toshiken-tools-learned-v1') || '[]').map(String)); } catch (_) {}
-    const categoryNames = {"手工具":"Perkakas tangan","電動工具":"Perkakas listrik","エア工具":"Perkakas pneumatik","測定工具":"Alat ukur","吊り具・運搬":"Alat angkat dan pemindah","清掃・仕上げ":"Pembersihan dan finishing","溶接・電気":"Pengelasan dan listrik","アタッチメント":"Attachment"};
-    const symbols = {"手工具":"🔧","電動工具":"⚡","エア工具":"💨","測定工具":"📏","吊り具・運搬":"🏗️","清掃・仕上げ":"🧹","溶接・電気":"🛠️","アタッチメント":"🏗️"};
-    const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-    function saveLearned(){localStorage.setItem('toshiken-tools-learned-v1',JSON.stringify([...learned]));updateProgress();}
-    function updateProgress(){const pct=tools.length?learned.size/tools.length*100:0;$('progressBar').style.width=pct+'%';$('totalBadge').textContent=`Hafal: ${learned.size} dari ${tools.length} alat`;}
-    function buildCategories(){const cats=[...new Set(tools.map(t=>t.category).filter(Boolean))];$('category').innerHTML='<option value="">Semua kategori</option>'+cats.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(categoryNames[c]||c)}</option>`).join('');}
-    function rebuildDeck(keepId){const q=$('search').value.trim().toLowerCase(),cat=$('category').value,only=$('unlearnedOnly').checked;deck=tools.filter(t=>(!cat||t.category===cat)&&(!only||!learned.has(String(t.id)))&&(!q||[t.name,t.formal_name,t.reading,t.nickname,t.indonesia,t.indonesia_explanation].some(v=>String(v||'').toLowerCase().includes(q))));let ix=keepId?deck.findIndex(t=>String(t.id)===String(keepId)):-1;position=ix>=0?ix:0;render();}
-    function render(){ $('deckCount').textContent=deck.length?`Kartu ${position+1} dari ${deck.length}`:'0 kartu';$('flashcard').classList.toggle('hidden',!deck.length);$('empty').classList.toggle('hidden',!!deck.length);if(!deck.length)return;const t=deck[position];$('cardCategory').textContent=categoryNames[t.category]||t.category||'Alat';$('cardNumber').textContent=`No.${String(t.id).padStart(2,'0')}`;$('jpName').textContent=t.name;$('reading').textContent=t.reading?`Cara baca bahasa Jepang: ${t.reading}`:'';$('nickname').textContent=t.formal_name?`Nama resmi: ${t.formal_name}`:(t.nickname?`Sebutan lain di tempat kerja di Jepang: ${t.nickname}`:'');$('nickname').classList.toggle('hidden',!t.formal_name&&!t.nickname);$('idName').textContent=t.indonesia||'—';$('idExplain').textContent=t.indonesia_explanation||'—';$('answer').classList.add('hidden');$('reveal').textContent='Lihat jawaban';$('mark').textContent=learned.has(String(t.id))?'✓ Sudah hafal':'✓ Saya hafal';$('mark').classList.toggle('primary',learned.has(String(t.id)));$('prev').disabled=deck.length<2;$('next').disabled=deck.length<2;const img=$('toolImage'),placeholder=$('placeholder');if(t.image){img.src=t.image;img.alt='Foto '+t.name;img.classList.remove('hidden');placeholder.classList.add('hidden');img.onerror=()=>{img.classList.add('hidden');placeholder.classList.remove('hidden');placeholder.querySelector('.symbol').textContent=symbols[t.category]||'🔧';placeholder.style.display='block';};}else{img.removeAttribute('src');img.classList.add('hidden');placeholder.classList.remove('hidden');placeholder.querySelector('.symbol').textContent=symbols[t.category]||'🔧';placeholder.style.display='block';}}
-    function move(delta){if(!deck.length)return;position=(position+delta+deck.length)%deck.length;render();}
-    function loadJapaneseVoices(){if(!('speechSynthesis'in window))return;japaneseVoices=speechSynthesis.getVoices().filter(v=>/^ja([-_]|$)/i.test(v.lang));const row=$('voiceRow'),select=$('voiceSelect'),previous=select.value;if(!japaneseVoices.length){row.classList.add('hidden');return;}select.innerHTML=japaneseVoices.map((v,i)=>`<option value="${i}">${escapeHtml(v.name)} (${escapeHtml(v.lang)})</option>`).join('');if(previous&&Number(previous)<japaneseVoices.length)select.value=previous;row.classList.toggle('hidden',japaneseVoices.length<2);}
-    $('reveal').addEventListener('click',()=>{const answer=$('answer');const open=answer.classList.toggle('hidden')===false;$('reveal').textContent=open?'Sembunyikan jawaban':'Lihat jawaban';});
-    $('prev').addEventListener('click',()=>move(-1));$('next').addEventListener('click',()=>move(1));
-    $('mark').addEventListener('click',()=>{if(!deck.length)return;const id=String(deck[position].id);if(learned.has(id))learned.delete(id);else learned.add(id);saveLearned();if($('unlearnedOnly').checked)rebuildDeck(deck[position]?.id);else render();});
-    $('speak').addEventListener('click',()=>{if(!deck.length)return;if(!('speechSynthesis'in window)){alert('Perangkat ini tidak mendukung suara.');return;}loadJapaneseVoices();if(!japaneseVoices.length){alert('Suara bahasa Jepang tidak tersedia. Periksa pengaturan suara pada perangkat.');return;}speechSynthesis.cancel();const t=deck[position],u=new SpeechSynthesisUtterance(t.speak||t.reading||t.name);const selected=japaneseVoices[Number($('voiceSelect').value)||0];u.lang=selected?.lang||'ja-JP';if(selected)u.voice=selected;u.rate=.82;u.pitch=1;speechSynthesis.speak(u);});
-    $('search').addEventListener('input',()=>rebuildDeck());$('category').addEventListener('change',()=>rebuildDeck());$('unlearnedOnly').addEventListener('change',()=>rebuildDeck());
-    document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')move(1);if(e.key==='ArrowLeft')move(-1);if(e.key===' '&&e.target.tagName!=='INPUT'&&e.target.tagName!=='SELECT'&&e.target.tagName!=='BUTTON'){$('reveal').click();}});
-    if('speechSynthesis'in window){loadJapaneseVoices();speechSynthesis.addEventListener?.('voiceschanged',loadJapaneseVoices);}
-    fetch('tools.json').then(r=>{if(!r.ok)throw new Error('tools.json');return r.json();}).then(data=>{tools=data;buildCategories();updateProgress();rebuildDeck();}).catch(err=>{$('deckCount').textContent='Kartu tidak dapat dimuat';$('empty').classList.remove('hidden');$('empty').textContent='Data alat gagal dimuat. Coba buka kembali setelah beberapa saat.';console.error(err);});
+
+    try {
+      learned = new Set(JSON.parse(localStorage.getItem('toshiken-tools-learned-v1') || '[]').map(String));
+    } catch (_) {}
+
+    const categoryNames = {
+      "手工具":"Perkakas tangan",
+      "電動工具":"Perkakas listrik",
+      "エア工具":"Perkakas pneumatik",
+      "測定工具":"Alat ukur",
+      "吊り具・運搬":"Alat angkat dan pemindah",
+      "清掃・仕上げ":"Pembersihan dan finishing",
+      "溶接・電気":"Pengelasan dan listrik",
+      "アタッチメント":"Attachment"
+    };
+
+    const symbols = {
+      "手工具":"🔧",
+      "電動工具":"⚡",
+      "エア工具":"💨",
+      "測定工具":"📏",
+      "吊り具・運搬":"🏗️",
+      "清掃・仕上げ":"🧹",
+      "溶接・電気":"🛠️",
+      "アタッチメント":"🏗️"
+    };
+
+    const escapeHtml = value =>
+      String(value ?? '').replace(/[&<>"']/g, ch => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[ch]));
+
+    function saveLearned() {
+      localStorage.setItem('toshiken-tools-learned-v1', JSON.stringify([...learned]));
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const pct = tools.length ? learned.size / tools.length * 100 : 0;
+      $('progressBar').style.width = pct + '%';
+      $('totalBadge').textContent = `Hafal: ${learned.size} dari ${tools.length} alat`;
+    }
+
+    function buildCategories() {
+      const cats = [...new Set(tools.map(t => t.category).filter(Boolean))];
+      $('category').innerHTML =
+        '<option value="">Semua kategori</option>' +
+        cats.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(categoryNames[c] || c)}</option>`).join('');
+    }
+
+    function rebuildDeck(keepId) {
+      const q = $('search').value.trim().toLowerCase();
+      const cat = $('category').value;
+      const only = $('unlearnedOnly').checked;
+
+      deck = tools.filter(t =>
+        (!cat || t.category === cat) &&
+        (!only || !learned.has(String(t.id))) &&
+        (!q || [t.name, t.formal_name, t.reading, t.nickname, t.indonesia, t.indonesia_explanation]
+          .some(v => String(v || '').toLowerCase().includes(q)))
+      );
+
+      const ix = keepId ? deck.findIndex(t => String(t.id) === String(keepId)) : -1;
+      position = ix >= 0 ? ix : 0;
+      render();
+    }
+
+    function render() {
+      $('deckCount').textContent = deck.length
+        ? `Kartu ${position + 1} dari ${deck.length}`
+        : '0 kartu';
+
+      $('flashcard').classList.toggle('hidden', !deck.length);
+      $('empty').classList.toggle('hidden', !!deck.length);
+      if (!deck.length) return;
+
+      const t = deck[position];
+      $('cardCategory').textContent = categoryNames[t.category] || t.category || 'Alat';
+      $('cardNumber').textContent = `No.${String(t.id).padStart(2, '0')}`;
+      $('jpName').textContent = t.name;
+      $('reading').textContent = t.reading ? `Cara baca bahasa Jepang: ${t.reading}` : '';
+
+      $('nickname').textContent = t.formal_name
+        ? `Nama resmi: ${t.formal_name}`
+        : (t.nickname ? `Sebutan lain di tempat kerja di Jepang: ${t.nickname}` : '');
+
+      $('nickname').classList.toggle('hidden', !t.formal_name && !t.nickname);
+      $('idName').textContent = t.indonesia || '—';
+      $('idExplain').textContent = t.indonesia_explanation || '—';
+      $('answer').classList.add('hidden');
+      $('reveal').textContent = 'Lihat jawaban';
+
+      $('mark').textContent = learned.has(String(t.id)) ? '✓ Sudah hafal' : '✓ Saya hafal';
+      $('mark').classList.toggle('primary', learned.has(String(t.id)));
+      $('prev').disabled = deck.length < 2;
+      $('next').disabled = deck.length < 2;
+
+      const img = $('toolImage');
+      const placeholder = $('placeholder');
+
+      if (t.image) {
+        img.src = t.image;
+        img.alt = 'Foto ' + t.name;
+        img.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+
+        img.onerror = () => {
+          img.classList.add('hidden');
+          placeholder.classList.remove('hidden');
+          placeholder.querySelector('.symbol').textContent = symbols[t.category] || '🔧';
+          placeholder.style.display = 'block';
+        };
+      } else {
+        img.removeAttribute('src');
+        img.classList.add('hidden');
+        placeholder.classList.remove('hidden');
+        placeholder.querySelector('.symbol').textContent = symbols[t.category] || '🔧';
+        placeholder.style.display = 'block';
+      }
+    }
+
+    function move(delta) {
+      if (!deck.length) return;
+      position = (position + delta + deck.length) % deck.length;
+      render();
+    }
+
+    function loadJapaneseVoices() {
+      if (!('speechSynthesis' in window)) return;
+
+      japaneseVoices = speechSynthesis.getVoices()
+        .filter(v => /^ja([-_]|$)/i.test(v.lang));
+
+      const row = $('voiceRow');
+      const select = $('voiceSelect');
+      const previous = select.value;
+
+      if (!japaneseVoices.length) {
+        row.classList.add('hidden');
+        return;
+      }
+
+      select.innerHTML = japaneseVoices.map((v, i) =>
+        `<option value="${i}">${escapeHtml(v.name)} (${escapeHtml(v.lang)})</option>`
+      ).join('');
+
+      if (previous && Number(previous) < japaneseVoices.length) select.value = previous;
+      row.classList.toggle('hidden', japaneseVoices.length < 2);
+    }
+
+    $('reveal').addEventListener('click', () => {
+      const answer = $('answer');
+      const open = answer.classList.toggle('hidden') === false;
+      $('reveal').textContent = open ? 'Sembunyikan jawaban' : 'Lihat jawaban';
+    });
+
+    $('prev').addEventListener('click', () => move(-1));
+    $('next').addEventListener('click', () => move(1));
+
+    $('mark').addEventListener('click', () => {
+      if (!deck.length) return;
+
+      const id = String(deck[position].id);
+      if (learned.has(id)) learned.delete(id);
+      else learned.add(id);
+
+      saveLearned();
+
+      if ($('unlearnedOnly').checked) rebuildDeck(deck[position]?.id);
+      else render();
+    });
+
+    $('speak').addEventListener('click', () => {
+      if (!deck.length) return;
+
+      if (!('speechSynthesis' in window)) {
+        alert('Perangkat ini tidak mendukung suara.');
+        return;
+      }
+
+      loadJapaneseVoices();
+
+      if (!japaneseVoices.length) {
+        alert('Suara bahasa Jepang tidak tersedia. Periksa pengaturan suara pada perangkat.');
+        return;
+      }
+
+      speechSynthesis.cancel();
+
+      const t = deck[position];
+      const u = new SpeechSynthesisUtterance(t.speak || t.reading || t.name);
+      const selected = japaneseVoices[Number($('voiceSelect').value) || 0];
+
+      u.lang = selected?.lang || 'ja-JP';
+      if (selected) u.voice = selected;
+      u.rate = .82;
+      u.pitch = 1;
+
+      speechSynthesis.speak(u);
+    });
+
+    $('search').addEventListener('input', () => rebuildDeck());
+    $('category').addEventListener('change', () => rebuildDeck());
+    $('unlearnedOnly').addEventListener('change', () => rebuildDeck());
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') move(1);
+      if (e.key === 'ArrowLeft') move(-1);
+      if (e.key === ' ' && e.target.tagName !== 'INPUT' &&
+          e.target.tagName !== 'SELECT' && e.target.tagName !== 'BUTTON') {
+        $('reveal').click();
+      }
+    });
+
+    if ('speechSynthesis' in window) {
+      loadJapaneseVoices();
+      speechSynthesis.addEventListener?.('voiceschanged', loadJapaneseVoices);
+    }
+
+    fetch('tools.json')
+      .then(r => {
+        if (!r.ok) throw new Error('tools.json');
+        return r.json();
+      })
+      .then(data => {
+        tools = data;
+        buildCategories();
+        updateProgress();
+        rebuildDeck();
+      })
+      .catch(err => {
+        $('deckCount').textContent = 'Kartu tidak dapat dimuat';
+        $('empty').classList.remove('hidden');
+        $('empty').textContent = 'Data alat gagal dimuat. Coba buka kembali setelah beberapa saat.';
+        console.error(err);
+      });
   </script>
 </body>
 </html>
